@@ -1,0 +1,11 @@
+*.bak
+**/log/
+**/__pycache__/
+apikey.txt
+CurrExch/
+exdata/
+Quotes/
+trans/outtrans/
+trans/srcdata/
+powerportfolio.pbix
+powerportfolio.xlsx

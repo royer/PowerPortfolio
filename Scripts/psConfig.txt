@@ -1,0 +1,52 @@
+# MinDate: Minimum date for Portfolio Slicer.
+<MinDate>
+2014-12-31
+</MinDate>
+
+<ExcelFile>
+PowerPortfolio.xlsx
+</ExcelFile>
+
+# DetailOutput: Values Yes or No. If value is Yes, then script outputs detail execution information, otherwise just summary
+<DetailOutput>
+No
+</DetailOutput>
+
+# PSDataFolder: Folder were to create files for Portfolio Slicer external files. Default "..\exData\"
+<PSDataFolder>
+exData
+</PSDataFolder>
+
+
+# DataRootFolder: Root folder for data. Default: "..\"
+<DataRootFolder>
+</DataRootFolder>
+
+# ArchiveQuotes: values Yes or No. If value is Yes, Archive script will run
+<ArchiveQuotes>
+Yes
+</ArchiveQuotes>
+
+# End of psConfig.txt file
+# ###############################
+
+# ###############################
+# Following config parameters were added by Maxim T
+
+# ColumnSeparator values could be : Comma, Tab, VerticalBar
+<ColumnSeparator>
+Tab
+</ColumnSeparator>
+
+# DecimalSeparator: Default value is . (dot), in some coutries this could be , (comma)
+<DecimalSeparator>
+.
+</DecimalSeparator>
+
+
+# IncludeQuoteArchiveFolder: Values Yes or No. If value is Yes, then when creating Quotes.csv file will include files with name patter _Archive.txt, otherwise these files will be excluded
+<IncludeQuoteArchiveFolder>
+No
+<IncludeQuoteArchiveFolder>
+
+

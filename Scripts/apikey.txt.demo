@@ -1,0 +1,18 @@
+#######################################################
+# Mar 9, 2018 
+# create by Royer.
+#
+# all apikey store this file.
+
+# CurrencyLayer apikey
+# Fetch currency exchange rate from currencylayer
+# url: https://currencylayer.com
+<CurrencyLayerAPIKey>
+demo
+</CurrencyLayerAPIKey>
+
+# eodhistoricaldata
+# https://eodhistoricaldata.com
+<EODHistorical>
+demo
+</EODHistorical>
