@@ -1,7 +1,7 @@
 # Power Portfolio
 A personal investment analysis report.
 
-Read chinese version README cilck here [中文](./README.CN.MD)
+Read chinese version cilck here [中文](./README.CN.MD)
 ## Introduction
 Power Portfolio is **FREE** for personal use. It uses Microsoft Excel to track your Stock, ETF, Futures, Options and Mutual Fund investments, and analyze your investments with [Microsft Power BI](https://powerbi.microsoft.com/).
 Power Portfolio can track multiple investment accounts, support multiple currencies, as well as multiple currencies in a single account.

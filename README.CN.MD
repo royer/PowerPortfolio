@@ -1,6 +1,7 @@
 # Power Portfolio
 个人投资收益分析
 
+[英文版](./README.MD)
 ## 简介
 Power Portfolio 是一个完全**免费**的用 Microsoft Excel 跟踪记录你的股票、ETF、期货、期权和互惠基金的投资，并用 [Microsoft Power BI](https://powerbi.microsoft.com/) 生成分析报告。Power Portfolio 可以同时跟踪多个账户，支持多币种，甚至是同一个投资账户里的多币种投资。
 

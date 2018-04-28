@@ -404,17 +404,22 @@ if 'Transaction Fees' in Statement:
     cbcombined = 0
     for tf in Statement['Transaction Fees']['data']:
         tf.append(0)
-        tf_date = tf[tfcols['Date/Time']].split(',')[0].strip()
-        tf_time = tf[tfcols['Date/Time']].split(',')[1].strip()
+        tfdate_array = tf[tfcols['Date/Time']].split(',')
+        tf_date = tfdate_array[0].strip()
+        if len(tfdate_array) == 2:
+            tf_time = tfdate_array[0].strip()
+        else:
+            tf_time = ""
         for trade in Statement['Trades']['data']:
             td_date = trade[tdcols['Date/Time']].split(',')[0].strip()
             td_time = trade[tdcols['Date/Time']].split(',')[1].strip()
             if tf[tfcols['Currency']] == trade[tdcols['Currency']] and \
                 tf[tfcols['Symbol']] == trade[tdcols['Symbol']] and \
                 (tf[tfcols['Date/Time']] == trade[tdcols['Date/Time']] or \
-                (tf_date == td_date and tf_time >= td_time and \
-                tf[tfcols['Trade Price']]== trade[tdcols['T. Price']] and \
-                'P' in trade[tdcols['Code']].split(';'))):
+                tf_date == td_date):
+                # (tf_date == td_date and tf_time >= td_time and \
+                # tf[tfcols['Trade Price']]== trade[tdcols['T. Price']] and \
+                # 'P' in trade[tdcols['Code']].split(';'))):
                 tf[-1] = 1
                 cbcombined += 1
                 trade[tdcols['Comm/Fee']] += tf[tfcols['Amount']]
