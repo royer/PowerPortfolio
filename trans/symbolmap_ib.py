@@ -62,5 +62,6 @@ SYMBOLMAP = {
     "HSIG8": "HSIG8",
     "NQH8": "NQH8",
     "NFLX": "NFLX",
-    "TWTR": "TWTR"
+    "TWTR": "TWTR",
+    "UBSFY": "UBSFY"
 }
