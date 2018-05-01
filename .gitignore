@@ -1,4 +1,5 @@
 *.bak
+~*
 **/log/
 **/__pycache__/
 apikey.txt

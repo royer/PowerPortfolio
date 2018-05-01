@@ -273,6 +273,19 @@ for srcline in newfilelines[1:]:
         t[12] = convert_date
 
         trans.append(t)
+    elif srcline[2] == "红股入帐":
+        t = [''] * len(TRANS_HEADER)
+        t[0] = ACCOUNTNAME
+        t[1] = tradedate
+        t[2] = "Split"
+        t[5] = decimal.Decimal(srcline[6])     # Qty
+        t[11] = locale.atoi(srcline[16]) # Order ID
+        t[12] = convert_date    # Convert Date
+        if srcline[20].startswith('港股通'):
+            t[4] = srcline[3][1:]+".HK"
+        else:
+            t[4] = srcline[3] + ".CN"   # Symbol
+        trans.append(t)
     elif srcline[2] == "银行转取":
         t = [''] * len(TRANS_HEADER)
         t[0] = ACCOUNTNAME      # AccountName
