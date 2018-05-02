@@ -58,6 +58,17 @@ import logging
 import re
 import decimal
 
+from decimal import Decimal
+
+# float point place of price field
+DFP_PRICE = Decimal('.0000001')
+
+# float point place of Qty field
+DFP_QTY = Decimal('.0001')
+
+# float point place of amount field
+DFP_AMOUNT = Decimal('.0000001')
+
 import csv
 
 from datetime import datetime
@@ -323,10 +334,10 @@ for srcline in newfilelines[1:]:
                 logging.error("Can not find fxrate from Note. line: {0} stop convert.".format(fileline))
                 exit(1)
             fxrate = decimal.Decimal(r.group(1))
-            t[7] = fee_cny / fxrate
-            t[9] = amount_cny / fxrate
+            t[7] = Decimal(fee_cny / fxrate).quantize(DFP_PRICE)
+            t[9] = Decimal(amount_cny / fxrate).quantize(DFP_PRICE)
             amount_hkd = t[9]
-            t[6] = (t[9] - t[7]) / t[5]             # recorrect price
+            t[6] = Decimal((t[9] - t[7]) / t[5]).quantize(DFP_PRICE)             # recorrect price
             trans.append(t)                        # insert trade hkd transaction
 
             # insert Currency trans
@@ -349,18 +360,18 @@ for srcline in newfilelines[1:]:
             t[1] = tradedate
             t[2] = "BuyCurrency_Pair"
             t[4] = "*CNY"
-            t[5] = amount_cny       # Qty
+            t[5] = amount_cny.quantize(DFP_QTY)       # Qty
             t[6] = 1                # Price
-            t[9] = amount_cny       # amount
+            t[9] = amount_cny.quantize(DFP_AMOUNT)       # amount
             t[11] = locale.atoi(srcline[16])
             t[12] = convert_date
             trans.append(t)
         else:
             t[4] = srcline[3] + ".CN"
-            t[7] = fee_cny                          # Fee
-            t[9] = amount_cny                       # Amount
+            t[7] = fee_cny.quantize(DFP_PRICE)                          # Fee
+            t[9] = amount_cny.quantize(DFP_AMOUNT)                       # Amount
             # recorrect price
-            t[6] = (t[9] - t[7])/t[5]
+            t[6] = Decimal((t[9] - t[7])/t[5]).quantize(DFP_PRICE)
             trans.append(t)
     elif srcline[2] == "证券卖出":
         t = [''] * len(TRANS_HEADER)
@@ -388,10 +399,10 @@ for srcline in newfilelines[1:]:
                 logging.error("Can not find fxrate from Note. line: {0} stop convert.".format(fileline))
                 exit(1)
             fxrate = decimal.Decimal(r.group(1))
-            t[7] = fee_cny / fxrate
-            t[9] = amount_cny / fxrate
+            t[7] = Decimal(fee_cny / fxrate).quantize(DFP_PRICE)
+            t[9] = Decimal(amount_cny / fxrate).quantize(DFP_PRICE)
             amount_hkd = t[9]
-            t[6] = (t[9] + t[7]) / t[5]             # recorrect price
+            t[6] =Decimal( (t[9] + t[7]) / t[5] ).quantize(DFP_PRICE)            # recorrect price
             trans.append(t)                        # insert trade hkd transaction
 
             # insert Currency trans
@@ -401,9 +412,9 @@ for srcline in newfilelines[1:]:
             t[1] = tradedate
             t[2] = "SellCurrency"
             t[4] = "*HKD"
-            t[5] = amount_cny       # Qty
-            t[6] = fxrate
-            t[9] = amount_hkd
+            t[5] = amount_cny.quantize(DFP_QTY)       # Qty
+            t[6] = fxrate.quantize(DFP_PRICE)
+            t[9] = amount_hkd.quantize(DFP_AMOUNT)
             t[10] = "Insert Fake Currency for Sell {0} ".format(srcline[3][1:]+".HK")
             t[11] = locale.atoi(srcline[16])
             t[12] = convert_date
@@ -422,10 +433,10 @@ for srcline in newfilelines[1:]:
             trans.append(t)
         else:
             t[4] = srcline[3] + ".CN"
-            t[7] = fee_cny                          # Fee
-            t[9] = amount_cny                       # Amount
+            t[7] = fee_cny.quantize(DFP_PRICE)                          # Fee
+            t[9] = amount_cny.quantize(DFP_AMOUNT)                       # Amount
             # recorrect price
-            t[6] = (t[9] + t[7])/t[5]
+            t[6] = Decimal((t[9] + t[7])/t[5]).quantize(DFP_PRICE)
             trans.append(t)
     elif srcline[2] == "利息归本":
         t = [''] * len(TRANS_HEADER)
